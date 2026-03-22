@@ -1,0 +1,22 @@
+name: pii-ner-pipeline
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - ipykernel
+  - jupyter
+  - notebook
+  - pip:
+    - spacy>=3.7.0
+    - https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.7.3/en_core_web_trf-3.7.3-py3-none-any.whl
+    - faker>=24.0.0
+    - pandas>=2.0.0
+    - numpy>=1.26.0
+    - requests>=2.31.0
+    - streamlit>=1.32.0
+    - scikit-learn>=1.4.0
+    - matplotlib>=3.8.0
+    - seaborn>=0.13.0
+    - huggingface_hub>=0.21.0

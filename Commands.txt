@@ -1,0 +1,11 @@
+# 1 — Create the environment (takes 3-5 min first time)
+conda env create -f environment.yml
+
+# 2 — Activate it
+conda activate pii-ner-pipeline
+
+# 3 — Register it as a Jupyter kernel so your notebooks see it
+python -m ipykernel install --user --name pii-ner-pipeline --display-name "PII NER Pipeline"
+
+# 4 — Download the spaCy transformer model
+python -m spacy download en_core_web_trf

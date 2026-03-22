@@ -1,0 +1,29 @@
+# requirements.txt
+# Pinned from local conda env (pii-ner-pipeline)
+# Python 3.11 + NumPy 1.26.4 — do not upgrade numpy or spacy independently
+
+# ── Core NLP — pinned exactly (binary C extension dependencies) ──────────────
+numpy==1.26.4
+spacy==3.7.5
+thinc==8.2.5
+spacy-legacy==3.0.12
+spacy-loggers==1.0.5
+
+# ── Transformer model ─────────────────────────────────────────────────────────
+https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.7.3/en_core_web_trf-3.7.3-py3-none-any.whl
+
+# ── Data & generation ─────────────────────────────────────────────────────────
+Faker==40.11.0
+pandas==2.3.3
+requests==2.32.3
+
+# ── App ───────────────────────────────────────────────────────────────────────
+streamlit==1.55.0
+
+# ── Evaluation & visualisation ────────────────────────────────────────────────
+scikit-learn==1.8.0
+matplotlib==3.10.8
+seaborn==0.13.2
+
+# ── HF deployment ─────────────────────────────────────────────────────────────
+huggingface_hub>=0.21.0
