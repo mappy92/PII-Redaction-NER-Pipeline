@@ -51,10 +51,13 @@ REDACTION_MAP = {
 # ── Load model ─────────────────────────────────────────────────────────────────
 @st.cache_resource(show_spinner="Loading NER model...")
 def load_model():
-    import spacy
-    from src.regex_patterns import regex_find, deduplicate
-    nlp = spacy.load("./model/model-best")
-    return nlp, regex_find, deduplicate
+    try:
+        import spacy
+        from src.regex_patterns import regex_find, deduplicate
+        nlp = spacy.load("model/model-best")  # ← relative to repo root
+        return nlp, regex_find, deduplicate, True
+    except Exception as e:
+        return None, None, None, str(e)  # ← return actual error message
 
 
 def detect_entities(text, nlp, regex_find, deduplicate):
@@ -196,15 +199,12 @@ st.caption(
 st.divider()
 
 # ── Load model ─────────────────────────────────────────────────────────────────
-try:
-    nlp, regex_find, deduplicate = load_model()
-    model_loaded = True
-except Exception as e:
-    st.warning(f"⚠️ Model not loaded: {e}")
-    model_loaded = False
+nlp, regex_find, deduplicate, model_status = load_model()
+model_loaded = model_status is True
 
 # ── Input ──────────────────────────────────────────────────────────────────────
 col_input, col_spacer = st.columns([3, 1])
+
 
 with col_input:
     doc_type = st.selectbox(
@@ -304,7 +304,7 @@ with st.sidebar:
         st.caption("spaCy NER + regex two-layer pipeline")
         st.caption("Trained on Canadian banking narrative docs")
     else:
-        st.error("Model not loaded")
+        st.error(f"Error: {model_status}")  # ← shows real error now
 
     st.divider()
     st.caption("Built by Manpreet Singh")
