@@ -26,6 +26,7 @@ BANK_THEME = """
 :root {
     --bank-blue:       #1A3A6B;
     --bank-dark-blue:  #0D1F3C;
+    --bank-dark-black:  #000000;
     --bank-mid-blue:   #1E3D6F;
     --bank-gold:       #C9A84C;
     --bank-gold-light: #F0D080;
@@ -227,7 +228,7 @@ html, body, [class*="css"] {
 
 /* ── Sidebar ── */
 [data-testid="stSidebar"] {
-    background: var(--bank-dark-blue) !important;
+    background: var(--bank-dark-black) !important;
     border-right: none !important;
 }
 [data-testid="stSidebar"] p,
