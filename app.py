@@ -735,10 +735,10 @@ MBA (Business Analytics), Brock University
 </p>
 <div style='margin-top:14px;display:flex;gap:10px;flex-wrap:wrap'>
 <a href='https://linkedin.com/in/manpreet-singh-ds' target='_blank'
-style='background:#1A3A6B;color:white;text-decoration:none;padding:6px 14px;
+style='background:#1A3A6B;color:black;text-decoration:none;padding:6px 14px;
 border-radius:6px;font-size:12px;font-weight:600'>🔗 LinkedIn</a>
 <a href='https://github.com/mappy92' target='_blank'
-style='background:#0D1F3C;color:white;text-decoration:none;padding:6px 14px;
+style='background:#0D1F3C;color:black;text-decoration:none;padding:6px 14px;
 border-radius:6px;font-size:12px;font-weight:600'>🐙 GitHub</a>
 </div>
 </div>
@@ -759,13 +759,6 @@ border-bottom:2px solid #C9A84C;padding-bottom:8px;margin-bottom:16px'>
     ]
 ]) + """
 </div>
-# <div style='margin-top:20px'>
-# <p style='color:#5A6A7E;font-size:12px;line-height:1.6;margin:0'>
-# Validated in production at <strong>TD Bank</strong> (Data Engineer II) and
-# <strong>Ministry of Transportation Ontario</strong> (Data Scientist),
-# processing 70K+ documents at 95% recall.
-# </p>
-# </div>
 </div>
 """, unsafe_allow_html=True)
 
