@@ -2,10 +2,12 @@
 # Pinned from local conda env (pii-ner-pipeline)
 # Python 3.11 + NumPy 1.26.4 — do not upgrade numpy or spacy independently
 
-# ── Core NLP — pinned exactly (binary C extension dependencies) ──────────────
+# ── Core NLP ──────────────────────────────────────────────────────────────────
 numpy==1.26.4
 spacy==3.7.5
 thinc==8.2.5
+typer==0.9.0
+typer-slim==0.12.3
 spacy-legacy==3.0.12
 spacy-loggers==1.0.5
 
