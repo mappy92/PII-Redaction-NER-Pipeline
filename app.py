@@ -26,7 +26,7 @@ BANK_THEME = """
 :root {
     --bank-blue:       #1A3A6B;
     --bank-dark-blue:  #0D1F3C;
-    --bank-dark-black:  #000000;
+    --bank-dark-black:  #0D1F3C;
     --bank-mid-blue:   #1E3D6F;
     --bank-gold:       #C9A84C;
     --bank-gold-light: #F0D080;
@@ -45,7 +45,12 @@ html, body, [class*="css"] {
 }
 
 /* ── Hide Streamlit branding ── */
-#MainMenu, footer, header { visibility: hidden; }
+#MainMenu, footer { visibility: hidden; }
+
+/* If you want to hide the top bar decoration but keep the button */
+header { 
+    background-color: transparent !important;
+}
 
 /* ── App background ── */
 .stApp {
@@ -354,10 +359,152 @@ hr {
     border-radius: 2px;
     margin-bottom: 20px;
 }
+
+/* ── Sidebar collapse button (Material icon, not SVG!) ── */
+[data-testid="stSidebarCollapseButton"] button {
+    background: rgba(255,255,255,0.15) !important;
+    border: 1px solid rgba(255,255,255,0.35) !important;
+    border-radius: 6px !important;
+}
+[data-testid="stSidebarCollapseButton"] [data-testid="stIconMaterial"],
+[data-testid="stSidebarCollapseButton"] span[color],
+[data-testid="stSidebarCollapseButton"] span {
+    color: #FFFFFF !important;
+}
+
+/* ── Sidebar expand button (Material icon, not SVG!) ── */
+[data-testid="collapsedControl"],
+[data-testid="stSidebarCollapsedControl"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    background: #C9A84C !important;
+    z-index: 999999 !important;
+}
+[data-testid="collapsedControl"] button,
+[data-testid="stSidebarCollapsedControl"] button {
+    opacity: 1 !important;
+    visibility: visible !important;
+    background: transparent !important;
+}
+[data-testid="collapsedControl"] [data-testid="stIconMaterial"],
+[data-testid="collapsedControl"] span[color],
+[data-testid="collapsedControl"] span,
+[data-testid="stSidebarCollapsedControl"] [data-testid="stIconMaterial"],
+[data-testid="stSidebarCollapsedControl"] span[color],
+[data-testid="stSidebarCollapsedControl"] span {
+    color: #0D1F3C !important;
+}
 </style>
 """
 
 st.markdown(BANK_THEME, unsafe_allow_html=True)
+
+# ── Inject sidebar toggle fix directly into parent document head ───────────────
+components.html("""
+<script>
+(function fix() {
+    try {
+        var doc = window.parent.document;
+
+        // Inject a <style> tag into the real parent <head>
+        var styleId = 'sidebar-toggle-fix';
+        if (!doc.getElementById(styleId)) {
+            var s = doc.createElement('style');
+            s.id = styleId;
+            s.textContent = `
+                /* Collapse button inside sidebar */
+                [data-testid="stSidebarCollapseButton"] button {
+                    background: rgba(255,255,255,0.20) !important;
+                    border: 1px solid rgba(255,255,255,0.5) !important;
+                    border-radius: 6px !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                }
+                /* Icon is Material Icons text span, NOT svg */
+                [data-testid="stSidebarCollapseButton"] span,
+                [data-testid="stSidebarCollapseButton"] [data-testid="stIconMaterial"] {
+                    color: #FFFFFF !important;
+                    opacity: 1 !important;
+                }
+
+                /* Expand button in main area when sidebar collapsed */
+                [data-testid="collapsedControl"],
+                [data-testid="stSidebarCollapsedControl"] {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    display: flex !important;
+                    background: #C9A84C !important;
+                    border-radius: 0 10px 10px 0 !important;
+                    box-shadow: 4px 0 16px rgba(0,0,0,0.4) !important;
+                    z-index: 999999 !important;
+                }
+                [data-testid="collapsedControl"] button,
+                [data-testid="stSidebarCollapsedControl"] button {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    background: transparent !important;
+                }
+                [data-testid="collapsedControl"] span,
+                [data-testid="collapsedControl"] [data-testid="stIconMaterial"],
+                [data-testid="stSidebarCollapsedControl"] span,
+                [data-testid="stSidebarCollapsedControl"] [data-testid="stIconMaterial"] {
+                    color: #0D1F3C !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                }
+            `;
+            doc.head.appendChild(s);
+        }
+
+        // Directly style any existing expand button right now
+        var expandSelectors = [
+            '[data-testid="collapsedControl"]',
+            '[data-testid="stSidebarCollapsedControl"]'
+        ];
+        expandSelectors.forEach(function(sel) {
+            var el = doc.querySelector(sel);
+            if (el) {
+                el.style.setProperty('opacity', '1', 'important');
+                el.style.setProperty('visibility', 'visible', 'important');
+                el.style.setProperty('display', 'flex', 'important');
+                el.style.setProperty('background', '#C9A84C', 'important');
+                el.style.setProperty('border-radius', '0 10px 10px 0', 'important');
+                el.style.setProperty('z-index', '999999', 'important');
+                // Icon is Material Icons text span, NOT svg
+                var spans = el.querySelectorAll('span');
+                spans.forEach(function(n) {
+                    n.style.setProperty('color', '#0D1F3C', 'important');
+                    n.style.setProperty('opacity', '1', 'important');
+                    n.style.setProperty('visibility', 'visible', 'important');
+                });
+            }
+        });
+        
+        // Fix collapse button inside sidebar too
+        var collapseBtn = doc.querySelector('[data-testid="stSidebarCollapseButton"]');
+        if (collapseBtn) {
+            var spans = collapseBtn.querySelectorAll('span');
+            spans.forEach(function(n) {
+                n.style.setProperty('color', '#FFFFFF', 'important');
+            });
+        }
+    } catch(e) {}
+}
+
+// Run immediately, then keep watching
+fix();
+try {
+    new MutationObserver(fix).observe(
+        window.parent.document.body,
+        { childList: true, subtree: true, attributes: true }
+    );
+} catch(e) {}
+})();
+</script>
+""", height=0)
+
+
 
 # ── Entity colour map ─────────────────────────────────────────────────────────
 ENTITY_COLOURS = {
