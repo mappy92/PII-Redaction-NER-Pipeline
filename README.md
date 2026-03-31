@@ -11,7 +11,7 @@ pinned: false
 
 # 🏦 Canadian Banking Document PII Redactor
 
-> **Live Demo:** [your-username-pii-redaction-ner-pipeline.hf.space](https://huggingface.co/spaces)
+> **Live Demo:** [PII Redaction for banking](https://pii-redaction-ner-pipeline.streamlit.app/)
 
 Production-style NLP pipeline that detects and redacts PII from Canadian
 banking documents using fine-tuned spaCy NER + regex fallback.
