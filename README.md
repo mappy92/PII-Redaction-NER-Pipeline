@@ -43,11 +43,11 @@ wire transfers, and loan applications.
 
 ## Document Types
 
-1. KYC Form — Customer onboarding
-2. Wire Transfer Request — SWIFT / domestic
+1. KYC Form :  Customer onboarding
+2. Wire Transfer Request :  SWIFT / domestic
 3. Personal Loan Application
 4. Account Statement Header
-5. SAR Memo — Suspicious Activity Report (AML)
+5. SAR Memo :  Suspicious Activity Report (AML)
 6. Customer Complaint Letter
 
 ---
@@ -78,5 +78,5 @@ streamlit run app.py
 
 ## Author
 
-**Manpreet Singh** — Data Scientist
+**Manpreet Singh** :  Data Scientist
 [LinkedIn](https://linkedin.com/in/manpreet-singh-ds) · [Portfolio](https://mappy92.github.io)
