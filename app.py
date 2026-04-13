@@ -902,8 +902,7 @@ border-bottom:2px solid #C9A84C;padding-bottom:8px;margin-bottom:16px'>
     f"border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600'>{t}</span>"
     for t in [
         "Python 3.11", "spaCy 3.7", "en_core_web_trf", "Streamlit",
-        "Regex NLP", "Pandas", "Scikit-learn", "Matplotlib",
-        "HuggingFace Hub", "Azure ML", "FINTRAC AML", "PIPEDA"
+        "Regex NLP", "Pandas", "Scikit-learn", "Matplotlib", "FINTRAC AML", "PIPEDA"
     ]
 ]) + """
 </div>
