@@ -877,7 +877,7 @@ border-bottom:2px solid #C9A84C;padding-bottom:8px;margin-bottom:16px'>
 </h3>
 <p style='color:#1A1A2E;font-size:15px;font-weight:700;margin-bottom:4px'>Manpreet Singh</p>
 <p style='color:#5A6A7E;font-size:13px;line-height:1.7;margin-top:0'>
-Data Scientist · 3+ yrs ML/AI<br>
+Data Analyst & Scientist<br>
 8+ yrs Software Engineering<br>
 MBA (Business Analytics), Brock University
 </p>
@@ -943,7 +943,7 @@ with st.sidebar:
         """
         <div style='font-size:13px;line-height:1.85;color:#1A1A2E'>
             <strong style='font-size:14px;color:#0D1F3C'>Manpreet Singh</strong><br>
-            <span style='color:#5A6A7E'>Data Scientist · 3+ yrs ML/AI</span><br>
+            <span style='color:#5A6A7E'>Data Analyst & Scientist</span><br>
             <span style='color:#5A6A7E'>8+ yrs Software Engineering</span><br>
             <span style='color:#5A6A7E'>MBA, Brock University</span><br><br>
             <a href='https://linkedin.com/in/manpreet-singh-ds' target='_blank'
